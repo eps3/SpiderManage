@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="tpl-left-nav tpl-left-nav-hover">
+    <div class="tpl-left-nav-title">
+        Spider Manage操作
+    </div>
+    <div class="tpl-left-nav-list">
+        <ul class="tpl-left-nav-menu">
+            <li class="tpl-left-nav-item">
+                <a href="/" class="nav-link">
+                    <i class="am-icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
+                        <i class="am-icon-table"></i>
+                        <span>任务</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu" style="display: block;">
+                        <li>
+                            <a href="/add_task" class="active">
+                                <i class="am-icon-angle-right"></i>
+                                <span>新增任务</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+        </ul>
+    </div>
+</div>
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        新增任务
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="/" class="am-icon-home">首页</a></li>
+        <li class="am-active">新增任务</li>
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 新增任务
+            </div>
+        </div>
+
+        <div class="tpl-block">
+
+            <div class="am-g">
+                <div class="tpl-form-body tpl-form-line">
+                    <form class="am-form tpl-form-line-form">
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">任务名称</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" placeholder="请输入任务名称">
+                                <small>请填写任务名称(建议英文)</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">起始url</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input">
+                            </div>
+                        </div>
+                         <div class="am-form-group">
+                            <label for="user-intro" class="am-u-sm-3 am-form-label">匹配规则</label>
+                            <div class="am-u-sm-9">
+                                <textarea class="" rows="10" id="user-intro" placeholder="请输入匹配规则(json)"></textarea>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">是否使用代理</label>
+                            <div class="am-u-sm-9">
+                                <div class="tpl-switch">
+                                    <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" checked />
+                                    <div class="tpl-switch-btn-view">
+                                        <div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">是否使用随机请求头</label>
+                            <div class="am-u-sm-9">
+                                <div class="tpl-switch">
+                                    <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" checked />
+                                    <div class="tpl-switch-btn-view">
+                                        <div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}
