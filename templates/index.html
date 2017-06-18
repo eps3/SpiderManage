@@ -1,43 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="tpl-left-nav tpl-left-nav-hover">
-        <div class="tpl-left-nav-title">
-            Spider Manage操作
-        </div>
-        <div class="tpl-left-nav-list">
-            <ul class="tpl-left-nav-menu">
-                <li class="tpl-left-nav-item">
-                    <a href="/" class="nav-link active">
-                        <i class="am-icon-home"></i>
-                        <span>首页</span>
-                    </a>
-                </li>
-                <li class="tpl-left-nav-item">
-                        <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
-                            <i class="am-icon-table"></i>
-                            <span>任务</span>
-                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
-                        </a>
-                        <ul class="tpl-left-nav-sub-menu">
-                            <li>
-                                <a href="/add_task">
-                                    <i class="am-icon-angle-right"></i>
-                                    <span>新增任务</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-            </ul>
-        </div>
+    <div class="tpl-left-nav-title">
+        Spider Manage操作
     </div>
+    <div class="tpl-left-nav-list">
+        <ul class="tpl-left-nav-menu">
+            <li class="tpl-left-nav-item">
+                <a href="/" class="nav-link active">
+                    <i class="am-icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="/add_task" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-bar-chart"></i>
+                    <span>新增任务</span>
+                </a>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-table"></i>
+                    <span>监控</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                </a>
+                <ul class="tpl-left-nav-sub-menu">
+                    {%for task in user.tasks %}
+                    <li>
+                        <a href="/status/{{task.name}}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>{{task.name}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}
+
+                </ul>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-table"></i>
+                    <span>数据</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                </a>
+                <ul class="tpl-left-nav-sub-menu">
+                    {%for task in user.tasks %}
+                    <li>
+                        <a href="/data/{{task.name}}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>{{task.name}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
 <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
             爬虫管理器
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">首页</a></li>
-            <li><a href="#">分类</a></li>
-            <li class="am-active">内容</li>
+            <li class="am-icon-home am-active"> 首页</li>
         </ol>
         <div class="row">
             <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
@@ -46,7 +70,7 @@
                         <i class="am-icon-comments-o"></i>
                     </div>
                     <div class="details">
-                        <div class="number"> 1349</div>
+                        <div class="number"> 3</div>
                         <div class="desc"> 总任务数</div>
                     </div>
                     <a class="more" href="#"> 查看更多
@@ -60,7 +84,7 @@
                         <i class="am-icon-bar-chart-o"></i>
                     </div>
                     <div class="details">
-                        <div class="number"> 62%</div>
+                        <div class="number"> 65%</div>
                         <div class="desc"> 未完成</div>
                     </div>
                     <a class="more" href="#"> 查看更多
@@ -88,7 +112,7 @@
                         <i class="am-icon-android"></i>
                     </div>
                     <div class="details">
-                        <div class="number"> 786</div>
+                        <div class="number"> 45</div>
                         <div class="desc"> 错误</div>
                     </div>
                     <a class="more" href="#"> 查看更多
@@ -101,60 +125,42 @@
         </div>
 
         <div class="row">
-            <div class="am-u-md-6 am-u-sm-12 row-mb">
-                <div class="tpl-portlet">
-                    <div class="tpl-portlet-title">
-                        <div class="tpl-caption font-green ">
-                            <i class="am-icon-cloud-download"></i>
-                            <span> Spider 数据统计</span>
-                        </div>
-                    </div>
-
-                    <!--此部分数据请在 js文件夹下中的 app.js 中的 “百度图表A” 处修改数据 插件使用的是 百度echarts-->
-                    <div class="tpl-echarts" id="tpl-echarts-A">
-
-                    </div>
-                </div>
-            </div>
-            <div class="am-u-md-6 am-u-sm-12 row-mb">
+            <div class="am-u-md-12 am-u-sm-12 row-mb">
                 <div class="tpl-portlet">
                     <div class="tpl-portlet-title">
                         <div class="tpl-caption font-red ">
                             <i class="am-icon-bar-chart"></i>
-                            <span> 已有数据</span>
+                            <span> 任务详情</span>
                         </div>
                     </div>
                     <div class="tpl-scrollable">
-                        <div class="number-stats">
-                            <div class="stat-number am-fl am-u-md-6">
-                                <div class="title am-text-right"> Total</div>
-                                <div class="number am-text-right am-text-warning"> 2460</div>
-                            </div>
-                            <div class="stat-number am-fr am-u-md-6">
-                                <div class="title"> Total</div>
-                                <div class="number am-text-success"> 2460</div>
-                            </div>
-
-                        </div>
-
                         <table class="am-table tpl-table">
                             <thead>
                             <tr class="tpl-table-uppercase">
-                                <th>人员</th>
-                                <th>余额</th>
-                                <th>次数</th>
-                                <th>效率</th>
+                                <th>任务名</th>
+                                <th>完成数据</th>
+                                <th>错误数据</th>
+                                <th>总任务数据</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>
-                                    <img src="static/img/user01.png" alt="" class="user-pic">
-                                    <a class="user-name" href="###">路人甲</a>
-                                </td>
-                                <td>￥3213</td>
-                                <td>65</td>
-                                <td class="font-green bold">26%</td>
+                                <td>taobao</td>
+                                <td>879</td>
+                                <td>12</td>
+                                <td>2011</td>
+                            </tr>
+                            <tr>
+                                <td>jingdong</td>
+                                <td>96</td>
+                                <td>1</td>
+                                <td>315</td>
+                            </tr>
+                            <tr>
+                                <td>dangdang</td>
+                                <td>221</td>
+                                <td>369</td>
+                                <td>569</td>
                             </tr>
                             </tbody>
                         </table>

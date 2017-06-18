@@ -13,20 +13,45 @@
                 </a>
             </li>
             <li class="tpl-left-nav-item">
-                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
-                        <i class="am-icon-table"></i>
-                        <span>任务</span>
-                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
-                    </a>
-                    <ul class="tpl-left-nav-sub-menu" style="display: block;">
-                        <li>
-                            <a href="/add_task" class="active">
-                                <i class="am-icon-angle-right"></i>
-                                <span>新增任务</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <a href="/add_task" class="nav-link tpl-left-nav-link-list active">
+                    <i class="am-icon-bar-chart"></i>
+                    <span>新增任务</span>
+                </a>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-table"></i>
+                    <span>监控</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                </a>
+                <ul class="tpl-left-nav-sub-menu">
+                    {%for task in user.tasks %}
+                    <li>
+                        <a href="/status/{{task.name}}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>{{task.name}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-table"></i>
+                    <span>数据</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                </a>
+                <ul class="tpl-left-nav-sub-menu">
+                    {%for task in user.tasks %}
+                    <li>
+                        <a href="/data/{{task.name}}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>{{task.name}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

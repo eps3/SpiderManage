@@ -13,24 +13,49 @@
                 </a>
             </li>
             <li class="tpl-left-nav-item">
-                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
-                        <i class="am-icon-table"></i>
-                        <span>任务</span>
-                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
-                    </a>
-                    <ul class="tpl-left-nav-sub-menu" style="display: block;">
-                        <li>
-                            <a href="/add_task" class="active">
-                                <i class="am-icon-angle-right"></i>
-                                <span>新增任务</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <a href="/add_task" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-bar-chart"></i>
+                    <span>新增任务</span>
+                </a>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-table"></i>
+                    <span>监控</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                </a>
+                <ul class="tpl-left-nav-sub-menu">
+                    {%for task in user.tasks %}
+                    <li>
+                        <a href="/status/{{task.name}}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>{{task.name}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}
+
+                </ul>
+            </li>
+            <li class="tpl-left-nav-item">
+                <a href="javascript:;" class="nav-link tpl-left-nav-link-list active">
+                    <i class="am-icon-table"></i>
+                    <span>数据</span>
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                </a>
+                <ul class="tpl-left-nav-sub-menu">
+                    {%for task in user.tasks %}
+                    <li>
+                        <a href="/data/{{task.name}}">
+                            <i class="am-icon-angle-right"></i>
+                            <span>{{task.name}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
-
 <div class="tpl-content-wrapper">
     <div class="tpl-content-page-title">
         任务数据
@@ -62,34 +87,22 @@
                         <table class="am-table am-table-striped am-table-hover table-main">
                             <thead>
                                 <tr>
+
                                     <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
-                                    <th class="table-id">ID</th>
-                                    <th class="table-title">标题</th>
-                                    <th class="table-type">类别</th>
-                                    <th class="table-author am-hide-sm-only">作者</th>
-                                    <th class="table-date am-hide-sm-only">修改日期</th>
-                                    <th class="table-set">操作</th>
+                                    {%for head in task_data.head %}
+                                        <th class="table-id">{{head}}</th>
+                                    {%endfor%}
                                 </tr>
                             </thead>
                             <tbody>
+                                {%for data in task_data.data %}
                                 <tr>
                                     <td><input type="checkbox"></td>
-                                    <td>1</td>
-                                    <td><a href="#">Business management</a></td>
-                                    <td>default</td>
-                                    <td class="am-hide-sm-only">测试1号</td>
-                                    <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                                    <td>
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                                                <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    {%for head in task_data.head %}
+                                        <td>{{data[head]}}</td>
+                                    {%endfor%}
                                 </tr>
-
+                                {%endfor%}
                             </tbody>
                         </table>
                         <div class="am-cf">
